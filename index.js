@@ -5,7 +5,7 @@ const multer = require('multer');
 
 app.set('view engine','ejs');
 
-const upload = multer({dest: "upload/"}) // multer basic configuration (multer it's a middleware!)
+const upload = multer({dest: "uploads/"}) // multer basic configuration (multer it's a middleware!)
 
 
 app.get("/",(req,res) => { 
