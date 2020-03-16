@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const multer = require('multer');
+const multer = require("multer");
+const path = require("path") // native node module used to rename file with your original extension (path.extname)
 
 
 app.set('view engine','ejs');
@@ -12,7 +13,7 @@ const storage = multer.diskStorage({ // allow archive manipulation after upload
         cb(null,"uploads/")
     },
     filename: function(req, file, cb) { // save archive with original name and extension
-        cb(null, file.originalname);
+        cb(null, file.originalname + Date.now() + path.extname(file.originalname));
     }
 }) 
 
