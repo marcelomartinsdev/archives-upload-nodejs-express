@@ -5,8 +5,20 @@ const multer = require('multer');
 
 app.set('view engine','ejs');
 
-const upload = multer({dest: "uploads/"}) // multer basic configuration (multer it's a middleware!)
 
+
+const storage = multer.diskStorage({ // allow archive manipulation after upload
+    destination: function(req, file, cb){
+        cb(null,"uploads/")
+    },
+    filename: function(req, file, cb) { // save archive with original name and extension
+        cb(null, file.originalname);
+    }
+}) 
+
+
+
+const upload = multer({storage}) // multer basic configuration (multer it's a middleware!)
 
 app.get("/",(req,res) => { 
   res.render("index");
